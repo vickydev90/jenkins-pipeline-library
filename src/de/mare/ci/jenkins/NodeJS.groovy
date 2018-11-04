@@ -1,19 +1,19 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
 
-def nvm(runTarget, opts = null) {
+def npm(runTarget, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
         NVM_DIR=
-        source ~/.nvm/nvm.sh
-        nvm install
+       // source ~/.nvm/nvm.sh//
+        npm install
         ${prefix}npm ${runTarget}"""
 }
 
-def nvmRun(runTarget, opts = null) {
+def npmRun(runTarget, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -21,11 +21,11 @@ def nvmRun(runTarget, opts = null) {
     sh """#!/bin/bash -e
         NVM_DIR=
         source ~/.nvm/nvm.sh
-        nvm install
+        npm install
         ${prefix}npm run ${runTarget}"""
 }
 
-def nvmNode(command, opts = null) {
+def npmNode(command, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
