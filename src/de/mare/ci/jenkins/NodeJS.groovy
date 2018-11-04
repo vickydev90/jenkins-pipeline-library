@@ -59,10 +59,10 @@ def publishNexus(String targetBranch, config){
 					targetURL = nexusURL
 					tarball = artifact
 				}
-			}
 		} catch (error) {
  			echo "Failed to publish artifact to Nexus"
  		}
+}
 def publishSnapshot(directory, buildNumber, name) {
     dir(directory) {
         // get current package version
