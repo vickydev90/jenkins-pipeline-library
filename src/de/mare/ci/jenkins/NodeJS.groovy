@@ -21,11 +21,8 @@ def npmRun(runTarget, opts = null, config) {
         NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
-
-	dir ("${config.distribution.dir}"){
-	  stash   name: "artifact-${config.application}-${config.targetEnv}-${currentVersion}" , includes: "**"
-          archiveArtifacts        artifacts: artifact, onlyIfSuccessful: true
- 	}		
+	stash includes: '**', name: 'artifact-${config.application}-${config.targetEnv}-${currentVersion}'
+        archiveArtifacts '**'
 }
 
 def npmNode(command, opts = null, config) {
