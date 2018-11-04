@@ -63,19 +63,4 @@ def publishNexus(String targetBranch, config){
  			echo "Failed to publish artifact to Nexus"
  		}
 }
-def publishSnapshot(directory, buildNumber, name) {
-    dir(directory) {
-        // get current package version
-        def currentVersion = getVersionFromPackageJSON()
-        // add build number for maven-like snapshot
-        def prefix = name.replaceAll('/','-').replaceAll('_','-').replaceAll('@','')
-        def newVersion = "${currentVersion}-${prefix}-${buildNumber}"
-        // publish snapshot to NPM
-        sh """#!/bin/bash -e
-            NVM_DIR=
-            source ~/.nvm/nvm.sh
-            npm version ${newVersion} --no-git-tag-version && npm publish --tag next"""
-    }
-}
-
 return this;
