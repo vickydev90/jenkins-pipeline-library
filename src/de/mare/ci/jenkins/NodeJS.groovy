@@ -19,8 +19,7 @@ def npmRun(runTarget, opts = null) {
     }
     sh """#!/bin/bash -e
         NVM_DIR=
-        source ~/.nvm/nvm.sh
-        npm install
+        source /jenkins/nvm.sh
         ${prefix}npm run ${runTarget}"""
 }
 
