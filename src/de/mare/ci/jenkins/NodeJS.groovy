@@ -8,7 +8,7 @@ def npm(runTarget, opts = null) {
     }
    sh """#!/bin/bash -e
 	NVM_DIR=
-	npm.sh
+	export PATH=/usr/local/bin:$PATH
         ${prefix}npm ${runTarget}"""
 }
 
