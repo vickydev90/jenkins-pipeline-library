@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
 
-def npm(runTarget, opts = null) {
+def npm(runTarget, opts = null, config) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -12,7 +12,7 @@ def npm(runTarget, opts = null) {
         ${prefix}npm ${runTarget}"""
 }
 
-def npmRun(runTarget, opts = null) {
+def npmRun(runTarget, opts = null, config) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -21,9 +21,12 @@ def npmRun(runTarget, opts = null) {
         NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
+   {
+    stash   name: "artifact-${config.application}-${config.targetEnv}-${currentVersion}" , includes: "**"
+    archiveArtifacts        artifacts: artifact, onlyIfSuccessful: true }
 }
 
-def npmNode(command, opts = null) {
+def npmNode(command, opts = null, config) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -46,6 +49,11 @@ def getVersionFromPackageJSON() {
         return packageJson.version
     }
 }
+
+def currentVersion = getVersionFromPackageJSON()
+
+
+
 
 def publishSnapshot(directory, buildNumber, name) {
     dir(directory) {
