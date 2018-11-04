@@ -19,6 +19,7 @@ def npmRun(runTarget, opts = null) {
     }
     sh """#!/bin/bash -e
         NVM_DIR=
+	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
 }
 
