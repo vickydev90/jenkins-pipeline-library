@@ -7,8 +7,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-       /* source ~/.nvm/nvm.sh */
-        npm install
+	NVM_DIR=
         ${prefix}npm ${runTarget}"""
 }
 
