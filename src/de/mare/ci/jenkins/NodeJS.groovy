@@ -24,7 +24,7 @@ def npmRun(runTarget, opts = null, config) {
    					{
     					stash   name: "artifact-${config.application}-${config.targetEnv}-${currentVersion}" , includes: "**"
    		 			archiveArtifacts        artifacts: artifact, onlyIfSuccessful: true 
-			}
+					}
 }
 
 def npmNode(command, opts = null, config) {
