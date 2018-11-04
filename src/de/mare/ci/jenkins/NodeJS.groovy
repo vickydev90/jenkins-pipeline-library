@@ -19,7 +19,6 @@ def npmRun(runTarget, opts = null) {
     }
     sh """#!/bin/bash -e
         NVM_DIR=
-        source /jenkins/npm.sh
         ${prefix}npm run ${runTarget}"""
 }
 
