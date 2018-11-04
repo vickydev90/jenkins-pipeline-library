@@ -20,7 +20,6 @@ def npmRun(runTarget, opts = null) {
     sh """#!/bin/bash -e
         NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
-	npm install --save-dev typescript
         ${prefix}npm run ${runTarget}"""
 }
 
@@ -31,8 +30,6 @@ def npmNode(command, opts = null) {
     }
     sh """#!/bin/bash -e
         NVM_DIR=
-        source ~/.nvm/nvm.sh
-        nvm use
         ${prefix}node ${command}"""
 }
 
