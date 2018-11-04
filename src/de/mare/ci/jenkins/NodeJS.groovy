@@ -8,7 +8,7 @@ def npm(runTarget, opts = null) {
     }
    sh """#!/bin/bash -e
 	NVM_DIR=
-        ${prefix}npm ${runTarget}"""
+        ${prefix}/npm ${runTarget}"""
 }
 
 def npmRun(runTarget, opts = null) {
