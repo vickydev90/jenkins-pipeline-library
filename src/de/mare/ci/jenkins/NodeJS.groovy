@@ -21,8 +21,6 @@ def npmRun(runTarget, opts = null, config) {
         NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
-	stash includes: '**', name: 'artifact-${config.application}-${config.targetEnv}-${currentVersion}'
-        archiveArtifacts '**'
 }
 
 def npmNode(command, opts = null, config) {
@@ -49,11 +47,22 @@ def getVersionFromPackageJSON() {
     }
 }
 
-def currentVersion = getVersionFromPackageJSON()
-
-
-
-
+def publishNexus(String targetBranch, config){
+    def currentVersion = getVersionFromPackageJSON()
+    String nexusURL = config.nexus.url ?: 'http://invalid.url/'
+    String customCredentials = config.nexus.credentials ?: null
+	try{
+		stash 	name: "artifact-${context.application}-${targetBranch}" , includes: "**"
+		archiveArtifacts 	artifacts: artifact, onlyIfSuccessful: true
+		echo "PUBLISH: ${this.name()} artifact  to ${nexusURL} "
+		nexusPublisher {
+					targetURL = nexusURL
+					tarball = artifact
+				}
+			}
+		} catch (error) {
+ 			echo "Failed to publish artifact to Nexus"
+ 		}
 def publishSnapshot(directory, buildNumber, name) {
     dir(directory) {
         // get current package version
