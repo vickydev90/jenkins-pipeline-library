@@ -20,7 +20,7 @@ def npmRun(runTarget, opts = null, config) {
     sh """#!/bin/bash -e
         NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
-        ${prefix}npm run ${runTarget}"""
+        ${prefix}npm run ${runTarget}""";
  	{
     		stash   name: "artifact-${config.application}-${config.targetEnv}-${currentVersion}" , includes: "**"
    		archiveArtifacts        artifacts: artifact, onlyIfSuccessful: true 
