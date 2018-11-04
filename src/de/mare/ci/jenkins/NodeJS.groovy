@@ -7,8 +7,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-	NVM_DIR=
-	export PATH=/usr/local/bin:$PATH
+	source npm.sh
         ${prefix}npm ${runTarget}"""
 }
 
@@ -18,7 +17,6 @@ def npmRun(runTarget, opts = null) {
         prefix = opts + " "
     }
     sh """#!/bin/bash -e
-        NVM_DIR=
 	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
 }
@@ -29,7 +27,6 @@ def npmNode(command, opts = null) {
         prefix = opts + " "
     }
     sh """#!/bin/bash -e
-        NVM_DIR=
         ${prefix}node ${command}"""
 }
 
