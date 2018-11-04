@@ -7,7 +7,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-	source npm.sh
+	source 'script/npm.sh'
         ${prefix}npm ${runTarget}"""
 }
 
