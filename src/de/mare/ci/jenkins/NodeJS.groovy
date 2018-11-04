@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
 
-def npm(runTarget, opts = null, config) {
+def npm(runTarget, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -12,7 +12,7 @@ def npm(runTarget, opts = null, config) {
         ${prefix}npm ${runTarget}"""
 }
 
-def npmRun(runTarget, opts = null, config) {
+def npmRun(runTarget, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
@@ -23,7 +23,7 @@ def npmRun(runTarget, opts = null, config) {
         ${prefix}npm run ${runTarget}"""
 }
 
-def npmNode(command, opts = null, config) {
+def npmNode(command, opts = null) {
     def prefix = ""
     if (opts != null) {
         prefix = opts + " "
