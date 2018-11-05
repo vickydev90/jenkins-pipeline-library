@@ -8,7 +8,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-	source npmshell
+	source ${npmshell}
         ${prefix}npm ${runTarget}"""
 }
 
