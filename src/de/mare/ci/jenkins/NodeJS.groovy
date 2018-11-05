@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
-import script
+def npmshell = libraryResource 'script/npm.sh'
 
 def npm(runTarget, opts = null) {
     def prefix = ""
@@ -8,7 +8,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-	source 'script/npm.sh'
+	source npmshell
         ${prefix}npm ${runTarget}"""
 }
 
