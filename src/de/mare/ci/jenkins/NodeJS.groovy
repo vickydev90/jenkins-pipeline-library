@@ -1,5 +1,6 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
+import script.*
 
 def npm(runTarget, opts = null) {
     def prefix = ""
@@ -49,12 +50,12 @@ def publishNexus(String targetBranch, config){
     String nexusURL = config.nexus.url ?: 'http://invalid.url/'
     String customCredentials = config.nexus.credentials ?: null
 	try{
-		stash 	name: "artifact-${context.application}-${targetBranch}" , includes: "**"
+		stash 	name: "artifact-${context.application}-${targetBranch}-${currentVersion}" , includes: "**"
 		archiveArtifacts 	artifacts: artifact, onlyIfSuccessful: true
 		echo "PUBLISH: ${this.name()} artifact  to ${nexusURL} "
 		nexusPublisher {
 					targetURL = nexusURL
-					tarball = artifact
+					tarball = this.name()
 				}
 		} catch (error) {
  			echo "Failed to publish artifact to Nexus"
