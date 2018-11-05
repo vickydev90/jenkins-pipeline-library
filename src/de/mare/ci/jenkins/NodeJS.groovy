@@ -1,7 +1,8 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
 def npmshell = libraryResource 'script/npm.sh'
-writefile file: 'npm.sh', text: npmshell
+writefile file: '/tmp/npm.sh', text: npmshell
+
 
 def npm(runTarget, opts = null) {
     def prefix = ""
@@ -9,6 +10,7 @@ def npm(runTarget, opts = null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
+        chmod 755 /tmp/npm.sh
 	source npm.sh
         ${prefix}npm ${runTarget}"""
 }
