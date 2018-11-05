@@ -4,14 +4,10 @@ package de.mare.ci.jenkins
 
 def npm(runTarget, opts = null) {
     def prefix = ""
-    def npmshell = libraryResource 'npm.sh'
-    writeFile file: '/tmp/npm.sh', text: npmshell
     if (opts != null) {
         prefix = opts + " "
     }
    sh """#!/bin/bash -e
-        chmod 755 /tmp/npm.sh
-	source /tmp/npm.sh
         ${prefix}npm ${runTarget}"""
 }
 
@@ -21,7 +17,6 @@ def npmRun(runTarget, opts = null) {
         prefix = opts + " "
     }
     sh """#!/bin/bash -e
-	export PATH=/usr/local/bin:$PATH
         ${prefix}npm run ${runTarget}"""
 }
 
