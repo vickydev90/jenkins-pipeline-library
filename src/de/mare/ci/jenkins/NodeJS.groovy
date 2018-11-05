@@ -11,7 +11,7 @@ def npm(runTarget, opts = null) {
     }
    sh """#!/bin/bash -e
         chmod 755 /tmp/npm.sh
-	source npm.sh
+	source /tmp/npm.sh
         ${prefix}npm ${runTarget}"""
 }
 
