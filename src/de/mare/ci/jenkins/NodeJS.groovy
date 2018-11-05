@@ -5,7 +5,7 @@ package de.mare.ci.jenkins
 def npm(runTarget, opts = null) {
     def prefix = ""
     def npmshell = libraryResource 'npm.sh'
-    writefile file: '/tmp/npm.sh', text: npmshell
+    writeFile file: '/tmp/npm.sh', text: npmshell
     if (opts != null) {
         prefix = opts + " "
     }
