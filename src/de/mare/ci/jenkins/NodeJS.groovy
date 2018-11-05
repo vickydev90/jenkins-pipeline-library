@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 package de.mare.ci.jenkins
-package script
+import script
 
 def npm(runTarget, opts = null) {
     def prefix = ""
